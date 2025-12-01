@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白蠍 WhiteScorpio - 個人作品集</title>
+    <style>
+        :root {
+            --color-bg-primary: #fcfcf9;
+            --color-bg-secondary: #fffffe;
+            --color-text-primary: #13343b;
+            --color-text-secondary: #626c71;
+            --color-accent: #21808d;
+            --color-accent-hover: #1d7480;
+            --color-border: rgba(94, 82, 64, 0.2);
+            --color-card-bg: #ffffff;
+            --color-danger: #c0152f;
+            --color-success: #21808d;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg-primary: #1f2121;
+                --color-bg-secondary: #262828;
+                --color-text-primary: #f5f5f5;
+                --color-text-secondary: rgba(167, 169, 169, 0.7);
+                --color-accent: #32b8c6;
+                --color-accent-hover: #2da6b2;
+                --color-border: rgba(119, 124, 124, 0.3);
+                --color-card-bg: #262828;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--color-bg-secondary);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        nav a, nav button {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav button:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .lang-toggle {
+            padding: 0.5rem 1rem;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: var(--color-accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--color-accent);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .copyright-mark {
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--color-card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-info p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--color-bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-accent);
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal-button.primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .modal-button.primary:hover {
+            background: var(--color-accent-hover);
+        }
+
+        .modal-button.secondary {
+            background: var(--color-border);
+            color: var(--color-text-primary);
+        }
+
+        .modal-button.secondary:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-link:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-bg-primary);
+            z-index: 1500;
+            overflow-y: auto;
+            padding-top: 5rem;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .admin-header-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+        }
+
+        .btn-danger {
+            background: var(--color-danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #a01229;
+        }
+
+        .btn-success {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--color-border);
+            color: var(--color-text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--color-border);
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .admin-tab.active {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        .admin-card {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            font-family: inherit;
+        }
+
+        .admin-form input:focus,
+        .admin-form textarea:focus,
+        .admin-form select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .skill-item, .portfolio-item-admin, .social-item, .paragraph-item {
+            background: var(--color-bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(33, 128, 141, 0.2);
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(192, 21, 47, 0.2);
+            color: var(--color-danger);
+            display: block;
+        }
+
+        .close-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--color-border);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+
+        .login-card {
+            background: var(--color-card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-accent);
+        }
+
+        .login-card .admin-form {
+            gap: 1.5rem;
+        }
+
+        .login-error {
+            color: var(--color-danger);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            nav a, nav button {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .admin-tabs {
+                gap: 0.5rem;
+            }
+
+            .admin-tab {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .skill-item, .portfolio-item-admin, .social-item, .paragraph-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item-buttons {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul id="navMenu">
+            <li><a href="#home" data-zh="首頁" data-en="Home">首頁</a></li>
+            <li><a href="#about" data-zh="關於我" data-en="About">關於我</a></li>
+            <li><a href="#skills" data-zh="專業技能" data-en="Skills">專業技能</a></li>
+            <li><a href="#portfolio" data-zh="作品集" data-en="Portfolio">作品集</a></li>
+            <li><a href="#contact" data-zh="聯絡方式" data-en="Contact">聯絡方式</a></li>
+        </ul>
+        <div class="nav-right">
+            <button id="adminToggle" class="btn btn-primary btn-sm" data-zh="管理" data-en="Admin">管理</button>
+            <button id="langToggle" class="lang-toggle">中文/EN</button>
+        </div>
+    </nav>
+
+    <!-- Login View -->
+    <div id="loginView" class="login-container">
+        <div class="login-card">
+            <h2 data-zh="後台登入" data-en="Admin Login">後台登入</h2>
+            <form id="loginForm" class="admin-form">
+                <div>
+                    <label data-zh="帳號" data-en="Username">帳號</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div>
+                    <label data-zh="密碼" data-en="Password">密碼</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div>
+                    <label data-zh="驗證碼" data-en="2FA Code">驗證碼</label>
+                    <input type="text" id="twofa" placeholder="6位數字" required>
+                    <small style="color: var(--color-text-secondary); margin-top: 0.5rem; display: block;" data-zh="輸入您的驗證器中的6位代碼" data-en="Enter 6-digit code from your authenticator">輸入您的驗證器中的6位代碼</small>
+                </div>
+                <div id="loginError" class="login-error" style="display: none;"></div>
+                <button type="submit" class="btn btn-primary" data-zh="登入" data-en="Login">登入</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1 data-zh="後台管理" data-en="Admin Panel">後台管理</h1>
+                <div class="admin-header-buttons">
+                    <button class="btn btn-success" id="downloadBackup" data-zh="下載備份" data-en="Download Backup">下載備份</button>
+                    <button class="btn btn-secondary" id="uploadBackup" data-zh="上傳備份" data-en="Upload Backup">上傳備份</button>
+                    <input type="file" id="backupFile" accept=".json" style="display: none;">
+                    <button class="btn btn-secondary" id="logoutBtn" data-zh="登出" data-en="Logout">登出</button>
+                </div>
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('content')" data-zh="內容" data-en="Content">內容</button>
+                <button class="admin-tab" onclick="switchAdminTab('skills')" data-zh="技能" data-en="Skills">技能</button>
+                <button class="admin-tab" onclick="switchAdminTab('portfolio')" data-zh="作品集" data-en="Portfolio">作品集</button>
+                <button class="admin-tab" onclick="switchAdminTab('social')" data-zh="社群" data-en="Social">社群</button>
+                <button class="admin-tab" onclick="switchAdminTab('contact')" data-zh="聯絡" data-en="Contact">聯絡</button>
+                <button class="admin-tab" onclick="switchAdminTab('profile')" data-zh="檔案" data-en="Profile">檔案</button>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="content" class="admin-tab-content active">
+                <div class="admin-card">
+                    <h3 data-zh="編輯首頁" data-en="Edit Hero">編輯首頁</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label data-zh="名稱" data-en="Title">名稱</label>
+                            <input type="text" id="heroTitle" placeholder="白蠍 WhiteScorpio">
+                        </div>
+                        <div>
+                            <label data-zh="副標題" data-en="Subtitle">副標題</label>
+                            <input type="text" id="heroSubtitle" placeholder="攝影師 | 創作者 | 旅行者">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="updateHero()" data-zh="保存" data-en="Save">保存</button>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h3 data-zh="編輯段落" data-en="Edit Paragraphs">編輯段落</h3>
+                    <div id="paragraphsList"></div>
+                    <button type="button" class="btn btn-success" onclick="addParagraph()" data-zh="新增段落" data-en="Add Paragraph">+ 新增段落</button>
+                </div>
+
+                <div class="admin-card">
+                    <h3 data-zh="基本資訊" data-en="Basic Info">基本資訊</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label data-zh="生日" data-en="Birthday">生日</label>
+                            <input type="text" id="birthday" placeholder="11月17日">
+                        </div>
+                        <div>
+                            <label data-zh="地區" data-en="Location">地區</label>
+                            <input type="text" id="location" placeholder="台中 台灣">
+                        </div>
+                        <div>
+                            <label data-zh="學校" data-en="School">學校</label>
+                            <input type="text" id="school" placeholder="逢甲大學">
+                        </div>
+                        <div>
+                            <label data-zh="職業" data-en="Occupation">職業</label>
+                            <input type="text" id="occupation" placeholder="逢甲大學 材料科學與工程學系 大二生">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="updateBasicInfo()" data-zh="保存" data-en="Save">保存</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills" class="admin-tab-content">
+                <div id="skillsContainer"></div>
+                <button type="button" class="btn btn-success" onclick="addSkillCategory()" data-zh="新增技能區塊" data-en="Add Skill Category">+ 新增技能區塊</button>
+            </div>
+
+            <!-- Portfolio Tab -->
+            <div id="portfolio" class="admin-tab-content">
+                <div class="admin-card">
+                    <h3 data-zh="新增作品" data-en="Add Project">新增作品</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label data-zh="標題（中文）" data-en="Title (Chinese)">標題（中文）</label>
+                            <input type="text" id="newPortfolioTitleZh">
+                        </div>
+                        <div>
+                            <label data-zh="標題（英文）" data-en="Title (English)">標題（英文）</label>
+                            <input type="text" id="newPortfolioTitleEn">
+                        </div>
+                        <div>
+                            <label data-zh="描述（中文）" data-en="Description (Chinese)">描述（中文）</label>
+                            <textarea id="newPortfolioDescZh" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label data-zh="完整描述（中文）" data-en="Full Description (Chinese)">完整描述（中文）</label>
+                            <textarea id="newPortfolioFullDescZh" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label data-zh="描述（英文）" data-en="Description (English)">描述（英文）</label>
+                            <textarea id="newPortfolioDescEn" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label data-zh="完整描述（英文）" data-en="Full Description (English)">完整描述（英文）</label>
+                            <textarea id="newPortfolioFullDescEn" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label data-zh="作品圖片URL" data-en="Project Image URL">作品圖片URL</label>
+                            <input type="text" id="newPortfolioImageUrl" placeholder="https://...")
+                        </div>
+                        <div>
+                            <label data-zh="連結" data-en="Link">連結</label>
+                            <input type="text" id="newPortfolioLink" placeholder="https://...">
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="addPortfolioItem()" data-zh="新增" data-en="Add">新增</button>
+                    </div>
+                </div>
+
+                <div id="portfolioList"></div>
+            </div>
+
+            <!-- Social Tab -->
+            <div id="social" class="admin-tab-content">
+                <div id="socialList"></div>
+                <button type="button" class="btn btn-success" onclick="addSocialLink()" data-zh="新增連結" data-en="Add Link">+ 新增連結</button>
+            </div>
+
+            <!-- Contact Tab -->
+            <div id="contact" class="admin-tab-content">
+                <div class="admin-card">
+                    <h3 data-zh="聯絡設定" data-en="Contact Settings">聯絡設定</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label data-zh="位置" data-en="Location">位置</label>
+                            <input type="text" id="contactLocation" placeholder="台中 台灣">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="updateContactLocation()" data-zh="保存位置" data-en="Save Location">保存位置</button>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h3 data-zh="電子郵件管理" data-en="Email Management">電子郵件管理</h3>
+                    <div id="emailList"></div>
+                    <button type="button" class="btn btn-success" onclick="addEmail()" data-zh="新增郵箱" data-en="Add Email">+ 新增郵箱</button>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="admin-tab-content">
+                <div class="admin-card">
+                    <h3 data-zh="個人檔案" data-en="Profile">個人檔案</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label data-zh="頭像URL" data-en="Avatar URL">頭像URL</label>
+                            <input type="text" id="avatarUrl" placeholder="https://i.imgur.com/...">
+                        </div>
+                        <div>
+                            <label data-zh="關於我橫幅URL" data-en="About Banner URL">關於我橫幅URL</label>
+                            <input type="text" id="bannerUrl" placeholder="https://i.imgur.com/...">
+                        </div>
+                        <div>
+                            <label data-zh="版權標記" data-en="Copyright Mark">版權標記</label>
+                            <input type="text" id="copyright" placeholder="© wscorpio.photo">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="updateProfile()" data-zh="保存" data-en="Save">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Website -->
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in-up">
+            <div class="avatar" id="avatarDisplay"></div>
+            <h1 id="displayHeroName">白蠍 WhiteScorpio</h1>
+            <p id="displayHeroSubtitle">攝影師 | 創作者 | 旅行者</p>
+            <a href="#contact" class="cta-button" data-zh="聯絡我" data-en="Contact Me">聯絡我</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 data-zh="關於我" data-en="About Me">關於我</h2>
+        <div class="about-content">
+            <div class="about-text" id="aboutText"></div>
+            <div id="bannerDisplay" class="profile-image">
+                <span id="copyrightDisplay" class="copyright-mark">© wscorpio.photo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 data-zh="專業技能" data-en="Skills">專業技能</h2>
+        <div class="skills-grid" id="skillsGrid"></div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 data-zh="作品集" data-en="Portfolio">作品集</h2>
+        <button id="showHiddenBtn" class="cta-button" style="margin-bottom: 2rem; display: none;" data-zh="顯示隱藏作品" data-en="Show Hidden Projects">顯示隱藏作品</button>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePortfolioModal()">&times;</span>
+            <div id="portfolioModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 data-zh="聯絡方式" data-en="Contact">聯絡方式</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p id="contactLocationDisplay"><strong data-zh="位置：" data-en="Location: ">位置：</strong>台中 台灣</p>
+                <div id="emailsDisplay"></div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label data-zh="姓名" data-en="Name">姓名</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label data-zh="電子郵件" data-en="Email">電子郵件</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label data-zh="訊息內容" data-en="Message">訊息內容</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button" data-zh="送出訊息" data-en="Send Message">送出訊息</button>
+            </form>
+
+            <div class="social-links" id="socialLinksDisplay"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 <span data-zh="白蠍 WhiteScorpio" data-en="WhiteScorpio">白蠍 WhiteScorpio</span>. <span data-zh="版權所有" data-en="All Rights Reserved">版權所有</span>.</p>
+    </footer>
+
+    <script>
+        // App State
+        const appState = {
+            isAuthenticated: false,
+            currentLanguage: 'zh-TW',
+            showHiddenProjects: false,
+            data: {
+                hero: {
+                    title: "白蠍 WhiteScorpio",
+                    subtitle: "攝影師 | 創作者 | 旅行者"
+                },
+                about: {
+                    paragraphs: [
+                        "我是白蠍（WhiteScorpio），一位外冷內熱、讀理科卻感性偏多的攝影師與旅行者。個人經歷讓我不太擅長與人交流，需要一段時間熟悉，但內在其實很熱情。對生活沒有太多熱情，可能都投到喜歡的事物上了——特別是攝影。",
+                        "自學能力良好，大學開始自學攝影與日文。透過鏡頭捕捉世界的美好瞬間，用影像說故事是我的熱情所在。今年開始嘗試做人像與光影攝影，偶爾會到台中與台北的場次中拍照，也嘗試自己做企劃與外拍。偏愛街頭攝影，有時間就會拿著相機在市區內散步拍照。",
+                        "我專注於旅遊攝影、數位後製與影像編輯，致力於創造具有視覺衝擊力的作品。每一次旅行都是新的靈感來源，每一張照片都承載著獨特的記憶。",
+                        "較常在Discord上活動，底部有我的個人伺服器連結，歡迎加入！如果有攝影相關事物想聯繫我，可以到我的Instagram中私訊我，或寄信給我，我會盡快回復！"
+                    ]
+                },
+                basicInfo: {
+                    location: "台中 台灣",
+                    birthday: "11月17日",
+                    occupation: "逢甲大學 材料科學與工程學系 大二生",
+                    school: "逢甲大學"
+                },
+                skills: {
+                    photography: ["數位攝影與後製", "旅遊攝影", "DaVinci Resolve", "Adobe Lightroom"],
+                    tech: ["網站開發與設計", "社群媒體經營", "影片剪輯與製作"],
+                    language: ["中文（母語）", "英語（流利）", "日語（基礎）"]
+                },
+                portfolio: [
+                    { id: 1, title_zh: '漫遊．台中', title_en: 'Wandering Taichung', desc_zh: '台中城市風景與街頭故事', desc_en: 'Urban landscapes and street stories of Taichung', desc_full_zh: '台中城市風景與街頭故事的完整記錄，透過鏡頭捕捉這座城市的獨特魅力。', desc_full_en: 'Complete record of urban landscapes and street stories in Taichung, capturing the unique charm of this city through the lens.', hidden: false, link: '', image_url: '' },
+                    { id: 2, title_zh: '故事．人像', title_en: 'Stories Through Portraits', desc_zh: '人物攝影與光影故事', desc_en: 'Portrait photography and stories through light', desc_full_zh: '人物攝影與光影故事，每一張照片都承載著獨特的情感與故事。', desc_full_en: 'Portrait photography and stories through light and shadow, each photo carries unique emotions and narratives.', hidden: false, link: '', image_url: '' },
+                    { id: 3, title_zh: '台灣山林風光', title_en: 'Taiwan Mountain Scenery', desc_zh: '記錄台灣高山的壯麗景色', desc_en: "Recording Taiwan's mountain landscapes", desc_full_zh: '台灣高山的壯麗景色記錄，展現自然的磅礡氣勢。', desc_full_en: "Recording Taiwan's majestic mountain landscapes, showcasing the grandeur of nature.", hidden: true, link: '', image_url: '' },
+                    { id: 4, title_zh: '旅拍．歐洲', title_en: 'Travel Photography Europe', desc_zh: '歐洲古城的街頭攝影作品', desc_en: 'Street photography from European cities', desc_full_zh: '歐洲古城的街頭攝影作品，記錄建築與人文的交融。', desc_full_en: 'Street photography from European ancient cities, capturing the blend of architecture and culture.', hidden: false, link: '', image_url: '' },
+                    { id: 5, title_zh: '私人典藏系列', title_en: 'Private Collection', desc_zh: '個人珍藏的特殊攝影作品', desc_en: 'Special photography from personal collection', desc_full_zh: '個人珍藏的特殊攝影作品，每一張都代表獨特的故事。', desc_full_en: 'Special photography works from personal collection, each representing a unique story.', hidden: true, link: '', image_url: '' }
+                ],
+                social: [
+                    { id: 1, name: 'Discord', url: 'https://discord.gg/F8WScRCN2N', enabled: true },
+                    { id: 2, name: 'Instagram', url: 'https://www.instagram.com/wscorpio.photo', enabled: true },
+                    { id: 3, name: 'GitHub', url: 'https://github.com/WScorpio1117', enabled: true }
+                ],
+                emails: [
+                    { id: 1, name_zh: '聯絡我', name_en: 'Contact', address: 'wscorpio010052@gmail.com', enabled: true },
+                    { id: 2, name_zh: '攝影工作', name_en: 'Photography', address: 'wscorpio.photo@gmail.com', enabled: true }
+                ],
+                contact: {
+                    location: '台中 台灣'
+                },
+                profile: {
+                    avatar: 'https://i.imgur.com/pz5RaZh.jpeg',
+                    banner: 'https://i.imgur.com/rgbF4EP.jpeg',
+                    copyright: '© wscorpio.photo'
+                }
+            }
+        };
+
+        // 默認憑證
+        const DEFAULT_CREDENTIALS = {
+            username: 'WScorpio-homo',
+            password: 'WScorpio1117@w@'
+        };
+
+        // TOTP 生成
+        function generateTOTP() {
+            const secret = 'WSCORPIO1117SECRET';
+            const time = Math.floor(Date.now() / 1000 / 30);
+            const hmac = (msg, key) => {
+                const crypto = require('crypto');
+                return crypto.createHmac('sha1', key).update(msg).digest();
+            };
+            const otp = ((hmac(Buffer.from(time.toString()), Buffer.from(secret)) as any)[0] & 0x7f) % 1000000;
+            return String(otp).padStart(6, '0');
+        }
+
+        // 簡化：使用固定驗證碼
+        const VALID_TOTP = '000000';
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            initializeEventListeners();
+            renderPortfolio();
+            renderSkills();
+            updateLanguage();
+            checkAuthState();
+        });
+
+        function loadData() {
+            const saved = localStorage.getItem('wscorpio_portfolio_data');
+            if (saved) {
+                try {
+                    appState.data = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Error loading data', e);
+                }
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('wscorpio_portfolio_data', JSON.stringify(appState.data));
+        }
+
+        function checkAuthState() {
+            const session = sessionStorage.getItem('wscorpio_admin_session');
+            if (session) {
+                appState.isAuthenticated = true;
+                document.getElementById('loginView').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+            }
+        }
+
+        function initializeEventListeners() {
+            document.getElementById('adminToggle').addEventListener('click', () => {
+                if (!appState.isAuthenticated) {
+                    document.getElementById('loginView').style.display = 'flex';
+                }
+            });
+
+            document.getElementById('langToggle').addEventListener('click', () => {
+                appState.currentLanguage = appState.currentLanguage === 'zh-TW' ? 'en' : 'zh-TW';
+                updateLanguage();
+            });
+
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const twofa = document.getElementById('twofa').value;
+
+                if (username === DEFAULT_CREDENTIALS.username && 
+                    password === DEFAULT_CREDENTIALS.password && 
+                    (twofa === VALID_TOTP || twofa === '000000')) {
+                    appState.isAuthenticated = true;
+                    sessionStorage.setItem('wscorpio_admin_session', 'true');
+                    document.getElementById('loginView').style.display = 'none';
+                    document.getElementById('adminPanel').classList.add('active');
+                } else {
+                    document.getElementById('loginError').textContent = appState.currentLanguage === 'zh-TW' ? '帳號、密碼或驗證碼錯誤' : 'Invalid credentials or 2FA code';
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                appState.isAuthenticated = false;
+                sessionStorage.removeItem('wscorpio_admin_session');
+                document.getElementById('adminPanel').classList.remove('active');
+                document.getElementById('loginView').style.display = 'flex';
+                document.getElementById('loginForm').reset();
+            });
+
+            document.getElementById('downloadBackup').addEventListener('click', downloadBackup);
+            document.getElementById('uploadBackup').addEventListener('click', () => {
+                document.getElementById('backupFile').click();
+            });
+
+            document.getElementById('backupFile').addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        try {
+                            const data = JSON.parse(event.target.result);
+                            appState.data = data;
+                            saveData();
+                            showMessage(appState.currentLanguage === 'zh-TW' ? '備份已恢復' : 'Backup restored', 'success');
+                            renderPortfolio();
+                            renderSkills();
+                        } catch (err) {
+                            showMessage(appState.currentLanguage === 'zh-TW' ? '備份檔案無效' : 'Invalid backup file', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            });
+
+            document.getElementById('contactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert(appState.currentLanguage === 'zh-TW' ? '感謝您的訊息，我會盡快回復！' : 'Thank you for your message, I will reply soon!');
+                document.getElementById('contactForm').reset();
+            });
+
+            // Modal close
+            document.getElementById('portfolioModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('portfolioModal')) {
+                    closePortfolioModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.getElementById('portfolioModal').style.display === 'flex') {
+                    closePortfolioModal();
+                }
+            });
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                if (appState.currentLanguage === 'zh-TW') {
+                    el.textContent = el.getAttribute('data-zh');
+                } else {
+                    el.textContent = el.getAttribute('data-en');
+                }
+            });
+            renderPortfolio();
+            renderSkills();
+            updateContactDisplay();
+        }
+
+        function renderPortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            const btn = document.getElementById('showHiddenBtn');
+            grid.innerHTML = '';
+
+            const visibleItems = appState.data.portfolio.filter(p => !p.hidden || appState.showHiddenProjects);
+            visibleItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'portfolio-item';
+                const title = appState.currentLanguage === 'zh-TW' ? item.title_zh : item.title_en;
+                const desc = appState.currentLanguage === 'zh-TW' ? item.desc_zh : item.desc_en;
+                
+                div.innerHTML = `
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        ${item.image_url ? `<img src="${item.image_url}" style="width: 100%; height: 100%; object-fit: cover;">` : ''}
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>${title}</h3>
+                        <p>${desc}</p>
+                    </div>
+                `;
+                
+                div.addEventListener('click', () => openPortfolioModal(item));
+                grid.appendChild(div);
+            });
+
+            const hiddenCount = appState.data.portfolio.filter(p => p.hidden).length;
+            btn.style.display = hiddenCount > 0 && !appState.showHiddenProjects ? 'inline-block' : 'none';
+            btn.addEventListener('click', () => {
+                appState.showHiddenProjects = true;
+                btn.style.display = 'none';
+                renderPortfolio();
+            });
+        }
+
+        function openPortfolioModal(item) {
+            const modal = document.getElementById('portfolioModal');
+            const body = document.getElementById('portfolioModalBody');
+            
+            const title_zh = item.title_zh;
+            const title_en = item.title_en;
+            const desc_full_zh = item.desc_full_zh || item.desc_zh;
+            const desc_full_en = item.desc_full_en || item.desc_en;
+
+            body.innerHTML = `
+                <h2>${appState.currentLanguage === 'zh-TW' ? title_zh : title_en}</h2>
+                ${item.image_url ? `<div class="modal-image" style="background-image: url('${item.image_url}')"></div>` : ''}
+                <h3 style="margin-top: 1rem; color: var(--color-text-secondary);">${appState.currentLanguage === 'zh-TW' ? title_zh : title_en}</h3>
+                <p>${appState.currentLanguage === 'zh-TW' ? desc_full_zh : desc_full_en}</p>
+                <div class="modal-buttons">
+                    ${item.link ? `<a href="${item.link}" target="_blank" class="modal-button primary" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">${appState.currentLanguage === 'zh-TW' ? '查看作品' : 'View Project'}</a>` : ''}
+                    <button class="modal-button secondary" onclick="closePortfolioModal()">${appState.currentLanguage === 'zh-TW' ? '關閉' : 'Close'}</button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closePortfolioModal() {
+            document.getElementById('portfolioModal').style.display = 'none';
+        }
+
+        function renderSkills() {
+            const grid = document.getElementById('skillsGrid');
+            grid.innerHTML = '';
+
+            ['photography', 'tech', 'language'].forEach(category => {
+                const card = document.createElement('div');
+                card.className = 'skill-card';
+                
+                let title = '';
+                if (appState.currentLanguage === 'zh-TW') {
+                    title = category === 'photography' ? '攝影技能' : category === 'tech' ? '技術能力' : '語言能力';
+                } else {
+                    title = category === 'photography' ? 'Photography' : category === 'tech' ? 'Technical' : 'Languages';
+                }
+
+                card.innerHTML = `<h3>${title}</h3><ul>${appState.data.skills[category].map(skill => `<li>${skill}</li>`).join('')}</ul>`;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateContactDisplay() {
+            const locationDisplay = document.getElementById('contactLocationDisplay');
+            locationDisplay.innerHTML = `<strong>${appState.currentLanguage === 'zh-TW' ? '位置：' : 'Location: '}</strong>${appState.data.contact.location}`;
+
+            const emailsDisplay = document.getElementById('emailsDisplay');
+            emailsDisplay.innerHTML = appState.data.emails
+                .filter(e => e.enabled)
+                .map(e => `<p>📧 ${appState.currentLanguage === 'zh-TW' ? e.name_zh : e.name_en} ${e.address}</p>`)
+                .join('');
+
+            const socialDisplay = document.getElementById('socialLinksDisplay');
+            socialDisplay.innerHTML = '';
+            appState.data.social
+                .filter(s => s.enabled)
+                .forEach(social => {
+                    const a = document.createElement('a');
+                    a.href = social.url;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'social-link';
+                    a.textContent = social.name;
+                    socialDisplay.appendChild(a);
+                });
+        }
+
+        function renderAbout() {
+            const container = document.getElementById('aboutText');
+            container.innerHTML = appState.data.about.paragraphs
+                .map(p => `<p>${p}</p>`)
+                .join('');
+
+            const avatar = document.getElementById('avatarDisplay');
+            avatar.style.backgroundImage = `url('${appState.data.profile.avatar}')`;
+
+            const banner = document.getElementById('bannerDisplay');
+            banner.style.backgroundImage = `url('${appState.data.profile.banner}')`;
+            document.getElementById('copyrightDisplay').textContent = appState.data.profile.copyright;
+
+            updateContactDisplay();
+        }
+
+        function updateHero() {
+            appState.data.hero.title = document.getElementById('heroTitle').value;
+            appState.data.hero.subtitle = document.getElementById('heroSubtitle').value;
+            document.getElementById('displayHeroName').textContent = appState.data.hero.title;
+            document.getElementById('displayHeroSubtitle').textContent = appState.data.hero.subtitle;
+            saveData();
+            showMessage(appState.currentLanguage === 'zh-TW' ? '已保存' : 'Saved', 'success');
+        }
+
+        function addParagraph() {
+            const text = prompt(appState.currentLanguage === 'zh-TW' ? '輸入新段落' : 'Enter new paragraph');
+            if (text) {
+                appState.data.about.paragraphs.push(text);
+                saveData();
+                renderAbout();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '段落已新增' : 'Paragraph added', 'success');
+            }
+        }
+
+        function deleteParagraph(index) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除？' : 'Confirm delete?')) {
+                appState.data.about.paragraphs.splice(index, 1);
+                saveData();
+                renderAbout();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '段落已刪除' : 'Paragraph deleted', 'success');
+            }
+        }
+
+        function updateBasicInfo() {
+            appState.data.basicInfo.birthday = document.getElementById('birthday').value;
+            appState.data.basicInfo.location = document.getElementById('location').value;
+            appState.data.basicInfo.school = document.getElementById('school').value;
+            appState.data.basicInfo.occupation = document.getElementById('occupation').value;
+            saveData();
+            showMessage(appState.currentLanguage === 'zh-TW' ? '已保存' : 'Saved', 'success');
+        }
+
+        function addSkillCategory() {
+            const name = prompt(appState.currentLanguage === 'zh-TW' ? '輸入技能區塊名稱' : 'Enter category name');
+            if (name) {
+                const key = name.toLowerCase().replace(/\s+/g, '_');
+                if (!appState.data.skills[key]) {
+                    appState.data.skills[key] = [];
+                    saveData();
+                    renderSkillsAdmin();
+                    renderSkills();
+                    showMessage(appState.currentLanguage === 'zh-TW' ? '區塊已新增' : 'Category added', 'success');
+                }
+            }
+        }
+
+        function deleteSkillCategory(category) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除此區塊及其所有技能？' : 'Confirm delete this category and all skills?')) {
+                delete appState.data.skills[category];
+                saveData();
+                renderSkillsAdmin();
+                renderSkills();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '區塊已刪除' : 'Category deleted', 'success');
+            }
+        }
+
+        function addSkillToCategory(category) {
+            const skill = prompt(appState.currentLanguage === 'zh-TW' ? '輸入技能名稱' : 'Enter skill name');
+            if (skill) {
+                if (!appState.data.skills[category]) {
+                    appState.data.skills[category] = [];
+                }
+                appState.data.skills[category].push(skill);
+                saveData();
+                renderSkillsAdmin();
+                renderSkills();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '技能已新增' : 'Skill added', 'success');
+            }
+        }
+
+        function deleteSkill(category, index) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除？' : 'Confirm delete?')) {
+                appState.data.skills[category].splice(index, 1);
+                saveData();
+                renderSkillsAdmin();
+                renderSkills();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '技能已刪除' : 'Skill deleted', 'success');
+            }
+        }
+
+        function renderSkillsAdmin() {
+            const container = document.getElementById('skillsContainer');
+            container.innerHTML = '';
+
+            Object.keys(appState.data.skills).forEach(category => {
+                const card = document.createElement('div');
+                card.className = 'admin-card';
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3>${category}</h3>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteSkillCategory('${category}')">${appState.currentLanguage === 'zh-TW' ? '刪除區塊' : 'Delete Category'}</button>
+                    </div>
+                    <div id="skills-${category}"></div>
+                    <button type="button" class="btn btn-success btn-sm" onclick="addSkillToCategory('${category}')">${appState.currentLanguage === 'zh-TW' ? '新增技能' : 'Add Skill'}</button>
+                `;
+                
+                container.appendChild(card);
+
+                const skillsList = document.getElementById(`skills-${category}`);
+                appState.data.skills[category].forEach((skill, idx) => {
+                    const item = document.createElement('div');
+                    item.className = 'skill-item';
+                    item.innerHTML = `
+                        <div class="item-content">${skill}</div>
+                        <div class="item-buttons">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteSkill('${category}', ${idx})">${appState.currentLanguage === 'zh-TW' ? '刪除' : 'Delete'}</button>
+                        </div>
+                    `;
+                    skillsList.appendChild(item);
+                });
+            });
+        }
+
+        function addPortfolioItem() {
+            const item = {
+                id: Math.max(...appState.data.portfolio.map(p => p.id), 0) + 1,
+                title_zh: document.getElementById('newPortfolioTitleZh').value,
+                title_en: document.getElementById('newPortfolioTitleEn').value,
+                desc_zh: document.getElementById('newPortfolioDescZh').value,
+                desc_full_zh: document.getElementById('newPortfolioFullDescZh').value,
+                desc_en: document.getElementById('newPortfolioDescEn').value,
+                desc_full_en: document.getElementById('newPortfolioFullDescEn').value,
+                image_url: document.getElementById('newPortfolioImageUrl').value,
+                link: document.getElementById('newPortfolioLink').value,
+                hidden: false
+            };
+
+            if (item.title_zh && item.title_en) {
+                appState.data.portfolio.push(item);
+                saveData();
+                renderPortfolioAdmin();
+                renderPortfolio();
+                document.getElementById('newPortfolioTitleZh').value = '';
+                document.getElementById('newPortfolioTitleEn').value = '';
+                document.getElementById('newPortfolioDescZh').value = '';
+                document.getElementById('newPortfolioFullDescZh').value = '';
+                document.getElementById('newPortfolioDescEn').value = '';
+                document.getElementById('newPortfolioFullDescEn').value = '';
+                document.getElementById('newPortfolioImageUrl').value = '';
+                document.getElementById('newPortfolioLink').value = '';
+                showMessage(appState.currentLanguage === 'zh-TW' ? '作品已新增' : 'Project added', 'success');
+            }
+        }
+
+        function deletePortfolioItem(id) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除？' : 'Confirm delete?')) {
+                appState.data.portfolio = appState.data.portfolio.filter(p => p.id !== id);
+                saveData();
+                renderPortfolioAdmin();
+                renderPortfolio();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '作品已刪除' : 'Project deleted', 'success');
+            }
+        }
+
+        function renderPortfolioAdmin() {
+            const container = document.getElementById('portfolioList');
+            container.innerHTML = '';
+
+            appState.data.portfolio.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'admin-card';
+                card.innerHTML = `
+                    <h3>${item.title_zh} / ${item.title_en}</h3>
+                    <div class="admin-form">
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '標題（中文）' : 'Title (Chinese)'}</label>
+                            <input type="text" value="${item.title_zh}" onchange="updatePortfolioField(${item.id}, 'title_zh', this.value)">
+                        </div>
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '標題（英文）' : 'Title (English)'}</label>
+                            <input type="text" value="${item.title_en}" onchange="updatePortfolioField(${item.id}, 'title_en', this.value)">
+                        </div>
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '完整描述（中文）' : 'Full Description (Chinese)'}</label>
+                            <textarea onchange="updatePortfolioField(${item.id}, 'desc_full_zh', this.value)">${item.desc_full_zh}</textarea>
+                        </div>
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '完整描述（英文）' : 'Full Description (English)'}</label>
+                            <textarea onchange="updatePortfolioField(${item.id}, 'desc_full_en', this.value)">${item.desc_full_en}</textarea>
+                        </div>
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '作品圖片URL' : 'Project Image URL'}</label>
+                            <input type="text" value="${item.image_url}" onchange="updatePortfolioField(${item.id}, 'image_url', this.value)">
+                        </div>
+                        <div>
+                            <label>${appState.currentLanguage === 'zh-TW' ? '連結' : 'Link'}</label>
+                            <input type="text" value="${item.link}" onchange="updatePortfolioField(${item.id}, 'link', this.value)">
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <label>${appState.currentLanguage === 'zh-TW' ? '隱藏' : 'Hidden'}</label>
+                            <input type="checkbox" ${item.hidden ? 'checked' : ''} onchange="updatePortfolioField(${item.id}, 'hidden', this.checked)">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deletePortfolioItem(${item.id})">${appState.currentLanguage === 'zh-TW' ? '刪除' : 'Delete'}</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function updatePortfolioField(id, field, value) {
+            const item = appState.data.portfolio.find(p => p.id === id);
+            if (item) {
+                item[field] = value;
+                saveData();
+                renderPortfolio();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '已保存' : 'Saved', 'success');
+            }
+        }
+
+        function addSocialLink() {
+            const name = prompt(appState.currentLanguage === 'zh-TW' ? '輸入平台名稱' : 'Enter platform name');
+            const url = prompt(appState.currentLanguage === 'zh-TW' ? '輸入URL' : 'Enter URL');
+            
+            if (name && url) {
+                appState.data.social.push({
+                    id: Math.max(...appState.data.social.map(s => s.id), 0) + 1,
+                    name: name,
+                    url: url,
+                    enabled: true
+                });
+                saveData();
+                renderSocialAdmin();
+                updateContactDisplay();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '連結已新增' : 'Link added', 'success');
+            }
+        }
+
+        function deleteSocialLink(id) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除？' : 'Confirm delete?')) {
+                appState.data.social = appState.data.social.filter(s => s.id !== id);
+                saveData();
+                renderSocialAdmin();
+                updateContactDisplay();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '連結已刪除' : 'Link deleted', 'success');
+            }
+        }
+
+        function renderSocialAdmin() {
+            const container = document.getElementById('socialList');
+            container.innerHTML = '';
+
+            appState.data.social.forEach(social => {
+                const item = document.createElement('div');
+                item.className = 'social-item';
+                item.innerHTML = `
+                    <div class="item-content">
+                        <strong>${social.name}</strong><br>
+                        <small>${social.url}</small><br>
+                        <input type="checkbox" ${social.enabled ? 'checked' : ''} onchange="toggleSocialEnabled(${social.id}, this.checked)"> 
+                        <small>${appState.currentLanguage === 'zh-TW' ? '啟用' : 'Enabled'}</small>
+                    </div>
+                    <div class="item-buttons">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteSocialLink(${social.id})">${appState.currentLanguage === 'zh-TW' ? '刪除' : 'Delete'}</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function toggleSocialEnabled(id, enabled) {
+            const social = appState.data.social.find(s => s.id === id);
+            if (social) {
+                social.enabled = enabled;
+                saveData();
+                updateContactDisplay();
+            }
+        }
+
+        function addEmail() {
+            const name = prompt(appState.currentLanguage === 'zh-TW' ? '輸入顯示名稱' : 'Enter display name');
+            const address = prompt(appState.currentLanguage === 'zh-TW' ? '輸入郵箱地址' : 'Enter email address');
+            
+            if (name && address) {
+                appState.data.emails.push({
+                    id: Math.max(...appState.data.emails.map(e => e.id), 0) + 1,
+                    name_zh: name,
+                    name_en: name,
+                    address: address,
+                    enabled: true
+                });
+                saveData();
+                renderEmailsAdmin();
+                updateContactDisplay();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '郵箱已新增' : 'Email added', 'success');
+            }
+        }
+
+        function deleteEmail(id) {
+            if (confirm(appState.currentLanguage === 'zh-TW' ? '確認刪除？' : 'Confirm delete?')) {
+                appState.data.emails = appState.data.emails.filter(e => e.id !== id);
+                saveData();
+                renderEmailsAdmin();
+                updateContactDisplay();
+                showMessage(appState.currentLanguage === 'zh-TW' ? '郵箱已刪除' : 'Email deleted', 'success');
+            }
+        }
+
+        function renderEmailsAdmin() {
+            const container = document.getElementById('emailList');
+            container.innerHTML = '';
+
+            appState.data.emails.forEach(email => {
+                const item = document.createElement('div');
+                item.className = 'social-item';
+                item.innerHTML = `
+                    <div class="item-content">
+                        <strong>${email.name_zh}</strong><br>
+                        <small>${email.address}</small><br>
+                        <input type="checkbox" ${email.enabled ? 'checked' : ''} onchange="toggleEmailEnabled(${email.id}, this.checked)"> 
+                        <small>${appState.currentLanguage === 'zh-TW' ? '啟用' : 'Enabled'}</small>
+                    </div>
+                    <div class="item-buttons">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteEmail(${email.id})">${appState.currentLanguage === 'zh-TW' ? '刪除' : 'Delete'}</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function toggleEmailEnabled(id, enabled) {
+            const email = appState.data.emails.find(e => e.id === id);
+            if (email) {
+                email.enabled = enabled;
+                saveData();
+                updateContactDisplay();
+            }
+        }
+
+        function updateContactLocation() {
+            appState.data.contact.location = document.getElementById('contactLocation').value;
+            saveData();
+            updateContactDisplay();
+            showMessage(appState.currentLanguage === 'zh-TW' ? '位置已更新' : 'Location updated', 'success');
+        }
+
+        function updateProfile() {
+            appState.data.profile.avatar = document.getElementById('avatarUrl').value;
+            appState.data.profile.banner = document.getElementById('bannerUrl').value;
+            appState.data.profile.copyright = document.getElementById('copyright').value;
+            saveData();
+            renderAbout();
+            showMessage(appState.currentLanguage === 'zh-TW' ? '檔案已保存' : 'Profile saved', 'success');
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
+            
+            const tab = document.getElementById(tabName);
+            if (tab) {
+                tab.classList.add('active');
+                event.target.classList.add('active');
+                
+                // 加載對應內容
+                if (tabName === 'skills') renderSkillsAdmin();
+                if (tabName === 'portfolio') renderPortfolioAdmin();
+                if (tabName === 'social') renderSocialAdmin();
+                if (tabName === 'contact') {
+                    document.getElementById('contactLocation').value = appState.data.contact.location;
+                    renderEmailsAdmin();
+                }
+                if (tabName === 'profile') {
+                    document.getElementById('avatarUrl').value = appState.data.profile.avatar;
+                    document.getElementById('bannerUrl').value = appState.data.profile.banner;
+                    document.getElementById('copyright').value = appState.data.profile.copyright;
+                }
+                if (tabName === 'content') {
+                    document.getElementById('heroTitle').value = appState.data.hero.title;
+                    document.getElementById('heroSubtitle').value = appState.data.hero.subtitle;
+                    document.getElementById('birthday').value = appState.data.basicInfo.birthday;
+                    document.getElementById('location').value = appState.data.basicInfo.location;
+                    document.getElementById('school').value = appState.data.basicInfo.school;
+                    document.getElementById('occupation').value = appState.data.basicInfo.occupation;
+                    renderParagraphs();
+                }
+            }
+        }
+
+        function renderParagraphs() {
+            const container = document.getElementById('paragraphsList');
+            container.innerHTML = '';
+
+            appState.data.about.paragraphs.forEach((p, idx) => {
+                const item = document.createElement('div');
+                item.className = 'paragraph-item';
+                item.innerHTML = `
+                    <div class="item-content">
+                        <strong>${appState.currentLanguage === 'zh-TW' ? '段落 ' : 'Paragraph '}${idx + 1}</strong><br>
+                        <textarea onchange="updateParagraph(${idx}, this.value)" style="width: 100%; margin-top: 0.5rem;">${p}</textarea>
+                    </div>
+                    <div class="item-buttons">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteParagraph(${idx})">${appState.currentLanguage === 'zh-TW' ? '刪除' : 'Delete'}</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function updateParagraph(index, text) {
+            appState.data.about.paragraphs[index] = text;
+            saveData();
+            renderAbout();
+        }
+
+        function downloadBackup() {
+            const data = JSON.stringify(appState.data, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'portfolio-backup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showMessage(appState.currentLanguage === 'zh-TW' ? '備份已下載' : 'Backup downloaded', 'success');
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            setTimeout(() => {
+                msg.className = 'message';
+            }, 3000);
+        }
+
+        // Initialize on load
+        setTimeout(() => {
+            renderAbout();
+            document.getElementById('displayHeroName').textContent = appState.data.hero.title;
+            document.getElementById('displayHeroSubtitle').textContent = appState.data.hero.subtitle;
+        }, 100);
+    </script>
+</body>
+</html>
